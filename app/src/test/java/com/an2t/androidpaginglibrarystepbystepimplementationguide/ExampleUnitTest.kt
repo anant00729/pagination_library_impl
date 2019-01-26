@@ -1,4 +1,4 @@
-package com.sharmadhiraj.androidpaginglibrarystepbystepimplementationguide
+package com.an2t.androidpaginglibrarystepbystepimplementationguide
 
 import org.junit.Test
 

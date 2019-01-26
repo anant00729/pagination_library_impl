@@ -1,9 +1,10 @@
-package com.sharmadhiraj.androidpaginglibrarystepbystepimplementationguide
+package com.an2t.androidpaginglibrarystepbystepimplementationguide
 
-import android.support.v7.widget.RecyclerView
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_news.view.*
 
@@ -11,8 +12,13 @@ class NewsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     fun bind(news: News?) {
         if (news != null) {
-            itemView.txt_news_name.text = news.title
-            Picasso.get().load(news.image).into(itemView.img_news_banner)
+
+            news.title?.let {
+                itemView.txt_news_name.text = it
+            }
+            news.image?.let {
+                Picasso.get().load(it).into(itemView.img_news_banner)
+            }
         }
     }
 

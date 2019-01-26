@@ -1,7 +1,7 @@
-package com.sharmadhiraj.androidpaginglibrarystepbystepimplementationguide
+package com.an2t.androidpaginglibrarystepbystepimplementationguide
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.paging.PageKeyedDataSource
+import androidx.lifecycle.MutableLiveData
+import androidx.paging.PageKeyedDataSource
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -23,11 +23,18 @@ class NewsDataSource(
                 networkService.getNews(1, params.requestedLoadSize)
                         .subscribe(
                                 { response ->
+
+
                                     updateState(State.DONE)
-                                    callback.onResult(response.news,
-                                            null,
-                                            2
-                                    )
+
+                                    response.news?.let{
+                                        callback.onResult(it,
+                                                null,
+                                                2
+                                        )
+                                    }
+
+
                                 },
                                 {
                                     updateState(State.ERROR)
@@ -44,9 +51,12 @@ class NewsDataSource(
                         .subscribe(
                                 { response ->
                                     updateState(State.DONE)
-                                    callback.onResult(response.news,
-                                            params.key + 1
-                                    )
+                                    response.news?.let{
+                                        callback.onResult(response.news,
+                                                params.key + 1
+                                        )
+                                    }
+
                                 },
                                 {
                                     updateState(State.ERROR)
